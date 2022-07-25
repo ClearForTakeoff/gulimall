@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>
+        页面数据，登录可见
+    </h1>
+    <ul>
+        <li th:each="emp:${data}">
+                数据：[[${emp}]]
+        </li>
+    </ul>
+</body>
+</html>

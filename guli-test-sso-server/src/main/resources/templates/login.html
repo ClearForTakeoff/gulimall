@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>登录页</title>
+</head>
+<body>
+  <form action="/doLogin" method="post">
+        姓名：<input name="name"/></br>
+         密码：<input name="password" type="password"/></br>
+      <input type="hidden" name="clienturl" th:value="${clienturl}">
+      <input type="submit">
+  </form>
+    <div><a href="">退出</a></div>
+</body>
+</html>

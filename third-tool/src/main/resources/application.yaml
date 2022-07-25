@@ -1,0 +1,13 @@
+server:
+  port: 8333
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        namespace: c3ff9096-0c2e-47a7-b4ec-469be8dffe67
+  application:
+    name: third-tool
+  redis:
+    host: 192.168.247.129
+    port: 6379

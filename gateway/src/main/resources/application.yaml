@@ -1,0 +1,110 @@
+server:
+  port: 7777
+
+spring:
+  application:
+    name: guli-gateway
+
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        namespace: c3ff9096-0c2e-47a7-b4ec-469be8dffe67
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+
+      routes:
+        - id: guli-coupon
+          uri: lb://guli-coupon
+          predicates:
+            - Path=/api/coupon/**
+          filters:
+            - RewritePath=/api/(?<segment>.*),/$\{segment}
+
+        - id: guli-member
+          uri: lb://guli-member
+          predicates:
+            - Path=/api/gulimember/**
+          filters:
+            - RewritePath=/api/(?<segment>.*),/$\{segment}
+
+        - id: guli-order
+          uri: lb://guli-order
+          predicates:
+            - Path=/api/guliorder/**
+          filters:
+            - RewritePath=/api/(?<segment>.*),/$\{segment}
+
+        - id: guli-product
+          uri: lb://guli-product
+          predicates:
+            - Path=/api/guliproduct/**,/hello
+          filters:
+            - RewritePath=/api/(?<segment>.*),/$\{segment}
+
+        - id: guli-ware
+          uri: lb://guli-ware
+          predicates:
+            - Path=/api/guliware/**
+          filters:
+            - RewritePath=/api/(?<segment>.*),/$\{segment}
+
+        - id: third-tool
+          uri: lb://third-tool
+          predicates:
+            - Path=/api/thirdtool/**
+          filters:
+            - RewritePath=/api/thirdtool/(?<segment>.*),/$\{segment}
+
+#        转发到rnren-fast
+        - id: admin-route
+          uri: lb://renren-fast
+          predicates:
+            - Path=/api/**
+          filters:
+            - RewritePath=/api/(?<segment>.*),/renren-fast/$\{segment}
+
+        # host转发,主页,商品详情页
+        - id: host-route-product
+          uri: lb://guli-product
+          predicates:
+            - Host=gulimall.com,item.gulimall.com
+
+        # 转发到搜索页
+        - id: host-route-search
+          uri: lb://guli-search
+          predicates:
+            - Host=search.gulimall.com
+
+        # 转发到登录页
+        - id: host-route-auth
+          uri: lb://guli-auth
+          predicates:
+            - Host=auth.gulimall.com
+
+        # 转发到购物车页面
+        - id: host-route-cart
+          uri: lb://guli-cart
+          predicates:
+            - Host=cart.gulimall.com
+
+        #转发到订单页面
+        - id: host-route-order
+          uri: lb://guli-order
+          predicates:
+            - Host=order.gulimall.com
+
+        #转发到订单页面
+        - id: host-route-member
+          uri: lb://guli-member
+          predicates:
+            - Host=member.gulimall.com
+
+        #转发到秒杀服务
+        - id: host-router-secondkill
+          uri: lb://guli-seckill
+          predicates:
+            - Host=seckill.gulimall.com

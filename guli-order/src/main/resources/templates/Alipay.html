@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>支付宝模拟支付</title>
+</head>
+<body>
+    <ul>
+        <li> 订单号 ：[[${pay.out_trade_no}]]</li>
+        <li> 订单名称 ：[[${pay.subject}]]</li>
+        <li> 支付金额 ：[[${pay.total_amount}]]</li>
+        <li> 备注 ：[[${pay.total_amount} == null ? '无':${pay.body}]]</li>
+        <li><a th:href="'http://order.gulimall.com/payed?orderSn='+${pay.out_trade_no}+'&subject='+${pay.subject}">立即支付</a></li>
+    </ul>
+
+</body>
+</html>

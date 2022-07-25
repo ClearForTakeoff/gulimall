@@ -1,0 +1,24 @@
+server:
+  port: 8055
+spring:
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://192.168.247.129:3306/gulimall_ums?serverTimezone=GMT&useUnicode=true&characterEncoding=utf-8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        namespace: c3ff9096-0c2e-47a7-b4ec-469be8dffe67
+  application:
+    name: guli-member
+mybatis-plus:
+  mapper-locations: classpath:/mapper/**/*.xml
+  global-config:
+    db-config:
+      id-type: auto
+
+logging:
+  level:
+    com.gulimall: debug
